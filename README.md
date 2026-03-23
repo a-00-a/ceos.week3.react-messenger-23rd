@@ -47,7 +47,9 @@
 
 ## **필수 구현 기능**
 
-- 피그마 **Dev Mode**를 통해 [결과화면](https://react-messenger-21th-kwondu.vercel.app/)을 구현합니다.
+- 피그마 **Dev Mode**를 통해, 매칭된 디자인 파트원의 UI를 구현합니다.
+    - [🔗 예시 1](https://react-messenger-21th-kwondu.vercel.app/)
+    - [🔗 예시 2](https://react-messenger-21th-nine.vercel.app/)
 - 디자인 시스템을 구축합니다.
 - tailwind CSS를 사용합니다.
 - 메세지를 보내면 채팅방 하단으로 스크롤을 이동시킵니다.
