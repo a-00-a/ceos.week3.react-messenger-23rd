@@ -1,4 +1,4 @@
-// 앱의 시작 화면을 연결하는 파일.
+// 앱의 루트 컴포넌트.
 import ChatRoomPage from '@/pages/chat-room/ui/ChatRoomPage';
 
 const App = () => {
