@@ -5,6 +5,7 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 import path from 'path';
 
 // https://vite.dev/config/
+
 export default defineConfig({
   envDir: '.env',
   plugins: [react(), svgr(), tsconfigPaths()],

@@ -24,7 +24,7 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
 
-    /* 추가 설정 */
+    /* 추가 설정  */
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]

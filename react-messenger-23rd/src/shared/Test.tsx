@@ -1,3 +1,3 @@
 export default function Test() {
-  return <div>Test Component</div>;
+  return <div> Test Component</div>;
 }
