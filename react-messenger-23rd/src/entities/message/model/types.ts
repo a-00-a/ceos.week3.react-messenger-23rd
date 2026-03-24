@@ -4,4 +4,5 @@ export interface Message {
   sender: 'me' | 'other';
   messages: string;
   time: string;
+  date: string;
 }

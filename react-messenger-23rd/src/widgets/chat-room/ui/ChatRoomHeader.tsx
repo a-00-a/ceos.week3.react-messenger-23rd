@@ -4,10 +4,9 @@ import hamburgerIcon from '@/shared/assets/icons/chat-room/hamburger(24_24).svg'
 import backIcon from '@/shared/assets/icons/chat-room/My_Text Box/Back (32_32).svg';
 import searchIcon from '@/shared/assets/icons/chat-room/search(24_24).svg';
 
-// 수정할 것: 프로필이랑 이름이 한 줄에!
 const ChatRoomHeader = () => {
   return (
-    <header className="flex items-center border-b border-[var(--color-gray-20)] bg-[var(--color-gray-20)] px-4 py-3">
+    <header className="flex items-center border-b border-[var(--color-gray-20)] bg-[var(--color-bg)] px-4 py-3">
       <div className="flex items-center justify-center">
         <button type="button">
           <img src={backIcon} alt="뒤로가기" className="h-8 w-8" />
