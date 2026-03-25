@@ -62,7 +62,7 @@ const ChatRoomPage = () => {
 
     const newMessage: Message = {
       id: String(Date.now()),
-      sender: 'me',
+      userId: 'me',
       messages: trimmedValue,
       time: getCurrentTime(),
       date: getCurrentDate(),

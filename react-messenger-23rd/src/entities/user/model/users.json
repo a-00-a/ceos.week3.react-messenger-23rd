@@ -1,7 +1,12 @@
 [
   {
-    "id": "u1",
-    "name": "김민수",
-    "profileImage": ""
+    "id": "me",
+    "name": "나",
+    "profileImage": "/images/user-02.svg"
+  },
+  {
+    "id": "other",
+    "name": "백하린",
+    "profileImage": "/images/Frame 73.svg"
   }
 ]
