@@ -3,7 +3,19 @@ import smileIcon from '@/shared/assets/icons/chat-room/face-smile.svg';
 import microPhoneIcon from '@/shared/assets/icons/chat-room/microphone-01.svg';
 import plusIcon from '@/shared/assets/icons/chat-room/plus.svg';
 
-const MessageInputBar = () => {
+interface MessageInputBarProps {
+  value: string;
+  onChange: (value: string) => void;
+  onSend: () => void;
+}
+
+const MessageInputBar = ({ value, onChange, onSend }: MessageInputBarProps) => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      onSend();
+    }
+  };
+
   return (
     <div className="bg-white px-4 pt-2 pb-8">
       <div className="flex items-center gap-2">
@@ -19,11 +31,16 @@ const MessageInputBar = () => {
             type="text"
             placeholder=""
             className="flex-1 rounded-1xl bg-transparent outline-none px-4 py-2 text-base focus:outline-none"
+            value={value}
+            onChange={(e) => onChange(e.target.value)}
+            onKeyDown={handleKeyDown}
           />
+
           <button type="button" className="flex items-center justify-center">
             <img src={microPhoneIcon} alt="음성메세지" className="h-6 w-6" />
           </button>
-          <button type="button" className="flex itmes-center justify-center">
+
+          <button type="button" onClick={onSend} className="flex itmes-center justify-center">
             <img src={smileIcon} alt="이모티콘" className="h-6 w-6" />
           </button>
         </div>
