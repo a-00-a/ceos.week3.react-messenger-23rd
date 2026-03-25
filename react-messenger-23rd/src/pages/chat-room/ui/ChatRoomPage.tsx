@@ -19,7 +19,7 @@ const getCurrentTime = () => {
   const period = hours < 12 ? 'am' : 'pm';
   const displayHour = hours % 12 === 0 ? 12 : hours % 12;
 
-  return `${displayHour}:${minutes} ${period}`;
+  return `${displayHour}:${minutes}${period}`;
 };
 
 const getCurrentDate = () => {
