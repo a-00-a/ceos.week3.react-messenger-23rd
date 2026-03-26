@@ -29,7 +29,7 @@ const MessageBubble = ({ message, showTime }: MessageBubbleProps) => {
             <p className="mb-1 text-sm leading-6 font-medium text-[var(--color-gray-80)]">{user.name}</p>
 
             <div className="flex items-end gap-1">
-              <div className="max-w-72 rounded-bl-xl rounded-br-xl rounded-tr-xl px-4 py-2 text-base leading-base bg-white text-[var(--color-gray-80)]">
+              <div className="max-w-72 rounded-bl-xl rounded-br-xl rounded-tr-xl px-3 py-2 text-base leading-base bg-white text-[var(--color-gray-80)]">
                 {message.messages}
               </div>
 
