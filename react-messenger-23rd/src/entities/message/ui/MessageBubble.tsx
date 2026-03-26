@@ -6,11 +6,12 @@ import type { Message } from '../model/types';
 
 interface MessageBubbleProps {
   message: Message;
+  showTime: boolean;
 }
 
 const users = rawUsers as User[];
 
-const MessageBubble = ({ message }: MessageBubbleProps) => {
+const MessageBubble = ({ message, showTime }: MessageBubbleProps) => {
   const isMe = message.userId === 'me';
   const user = users.find((item) => item.id === message.userId);
 
@@ -32,7 +33,7 @@ const MessageBubble = ({ message }: MessageBubbleProps) => {
                 {message.messages}
               </div>
 
-              <span className="text-xs leading-4 text-[var(--color-gray-60)]">{message.time}</span>
+              {showTime && <span className="text-xs leading-4 text-[var(--color-gray-60)]">{message.time}</span>}
             </div>
           </div>
         </div>
@@ -40,8 +41,7 @@ const MessageBubble = ({ message }: MessageBubbleProps) => {
 
       {isMe && (
         <div className="flex items-end gap-1">
-          <span className="text-xs leading-4 text-[var(--color-gray-60)]">{message.time}</span>
-
+          {showTime && <span className="text-xs leading-4 text-[var(--color-gray-60)]">{message.time}</span>}
           <div className="flex-1 max-w-72 text-right rounded-bl-xl rounded-br-xl rounded-tl-xl bg-[var(--color-main)] px-4 py-2 text-base leading-6 text-white">
             {message.messages}
           </div>

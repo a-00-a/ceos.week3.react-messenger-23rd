@@ -16,12 +16,20 @@ const MessageList = ({ messages, bottomRef }: MessageListProps) => {
     <section className="flex-1 overflow-y-auto bg-[var(--color-section-bg)] px-4 py-3">
       {messages.map((message, index) => {
         const prevMessage = messages[index - 1];
+        const nextMessage = messages[index + 1];
+
         const showDate = index === 0 || prevMessage.date !== message.date;
+
+        const showTime =
+          !nextMessage ||
+          nextMessage.userId !== message.userId ||
+          nextMessage.time !== message.time ||
+          nextMessage.date !== message.date;
 
         return (
           <div key={message.id}>
             {showDate && <DateDivider date={message.date} />}
-            <MessageBubble message={message} />
+            <MessageBubble message={message} showTime={showTime} />
           </div>
         );
       })}
