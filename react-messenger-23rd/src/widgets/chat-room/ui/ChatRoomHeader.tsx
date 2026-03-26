@@ -26,7 +26,7 @@ const ChatRoomHeader = () => {
           type="button"
           className="flex h-8 w-8 items-center justify-center rounded-full transition-colors hover:bg-[var(--color-gray-30)]"
         >
-          <img src={searchIcon} alt="검색" className="h-5 w-5" />
+          <img src={searchIcon} alt="검색" className="h-6 w-6" />
         </button>
         <button
           type="button"
