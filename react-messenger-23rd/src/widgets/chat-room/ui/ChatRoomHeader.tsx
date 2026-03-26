@@ -18,7 +18,7 @@ const ChatRoomHeader = () => {
       </div>
 
       <div className="flex flex-1 items-center justify-center">
-        <h1 className="text-base font-semibold text-[var(--color-gray-90)]">백하린</h1>
+        <h1 className="text-partner font-semibold text-[var(--color-gray-90)]">백하린</h1>
       </div>
 
       <div className="flex w-16 justify-end gap-3">
