@@ -14,7 +14,7 @@ const ChatRoomHeader = () => {
         >
           <img src={backIcon} alt="뒤로가기" className="h-8 w-8" />
         </button>
-        <span className="-ml-2 text-base font-normal leading-6 text-[var(--color-gray-80)]">999+</span>
+        <span className="-ml-2 text-[17px] font-normal leading-6 text-[var(--color-gray-80)]">999+</span>
       </div>
 
       <div className="flex flex-1 items-center justify-center">
