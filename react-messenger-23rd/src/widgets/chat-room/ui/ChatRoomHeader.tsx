@@ -14,11 +14,11 @@ const ChatRoomHeader = () => {
         >
           <img src={backIcon} alt="뒤로가기" className="h-8 w-8" />
         </button>
-        <span className="-ml-2 text-base text-[var(--color-gray-80)]">999+</span>
+        <span className="-ml-2 text-base font-normal leading-6 text-[var(--color-gray-80)]">999+</span>
       </div>
 
       <div className="flex flex-1 items-center justify-center">
-        <h1 className="text-[17px] font-semibold text-[var(--color-gray-90)]">백하린</h1>
+        <h1 className="text-[17px] font-semibold leading-6 text-[var(--color-gray-90)]">백하린</h1>
       </div>
 
       <div className="flex w-16 justify-end gap-3">
