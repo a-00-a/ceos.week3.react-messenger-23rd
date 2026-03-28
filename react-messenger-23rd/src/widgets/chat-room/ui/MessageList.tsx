@@ -40,12 +40,20 @@ const MessageList = ({ messages, bottomRef, isFlipped }: MessageListProps) => {
           nextMessage.time !== message.time ||
           nextMessage.date !== message.date;
 
+        const showProfile = index === 0 || prevMessage.userId !== message.userId || prevMessage.time !== message.time;
+
         const marginClass = getMarginClass(message.userId, nextMessage?.userId, isFlipped);
 
         return (
           <div key={message.id}>
             {showDate && <DateDivider date={message.date} />}
-            <MessageBubble message={message} showTime={showTime} isFlipped={isFlipped} marginClass={marginClass} />
+            <MessageBubble
+              message={message}
+              showTime={showTime}
+              showProfile={showProfile}
+              isFlipped={isFlipped}
+              marginClass={marginClass}
+            />
           </div>
         );
       })}
