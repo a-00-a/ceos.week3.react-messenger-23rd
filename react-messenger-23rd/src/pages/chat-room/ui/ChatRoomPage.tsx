@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 
 import rawMessages from '@/entities/message/model/messages.json';
 import type { Message } from '@/entities/message/model/types';
+import StatusBar from '@/shared/ui/StatusBar';
 import ChatRoomHeader from '@/widgets/chat-room/ui/ChatRoomHeader';
 import MessageInputBar from '@/widgets/chat-room/ui/MessageInputBar';
 import MessageList from '@/widgets/chat-room/ui/MessageList';
@@ -75,6 +76,7 @@ const ChatRoomPage = () => {
 
   return (
     <main className="flex h-screen flex-col bg-[var(--color-gray-20)]">
+      <StatusBar />
       <ChatRoomHeader onFlip={() => setIsFlipped((prev) => !prev)} isFlipped={isFlipped} />
       <MessageList messages={messages} bottomRef={bottomRef} isFlipped={isFlipped} />
       <MessageInputBar value={inputValue} onChange={setInputValue} onSend={handleSendMessage} />
