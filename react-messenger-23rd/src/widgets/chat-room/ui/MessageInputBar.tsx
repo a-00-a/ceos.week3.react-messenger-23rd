@@ -5,6 +5,7 @@ import { useRef, useState } from 'react';
 import smileIcon from '@/shared/assets/icons/chat-room/face-smile.svg';
 import microPhoneIcon from '@/shared/assets/icons/chat-room/microphone-01.svg';
 import plusIcon from '@/shared/assets/icons/chat-room/plus.svg';
+import sendIcon from '@/shared/assets/icons/chattingRoom/arrow-narrow-up.svg';
 
 interface MessageInputBarProps {
   value: string;
@@ -39,12 +40,14 @@ const MessageInputBar = ({ value, onChange, onSend }: MessageInputBarProps) => {
     }
   };
 
+  const hasText = value.trim().length > 0;
+
   return (
     <div className="bg-white px-4 pt-2 pb-8">
       <div className="flex items-center gap-2">
         <button
           type="button"
-          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[var(--color-gray-30)] transition-colors hover:bg-[var(--color-gray-40)]"
+          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[var(--color-gray-30)] transition-colors hover:bg-[var(--color-gray-50)]"
         >
           <img src={plusIcon} alt="추가" className="h-6 w-6" />
         </button>
@@ -62,19 +65,30 @@ const MessageInputBar = ({ value, onChange, onSend }: MessageInputBarProps) => {
             onCompositionEnd={() => setIsComposing(false)}
           />
 
-          <button
-            type="button"
-            className="flex items-center justify-center rounded-full p-1 transition-colors hover:bg-[var(--color-gray-20)]"
-          >
-            <img src={microPhoneIcon} alt="음성메세지" className="h-6 w-6" />
-          </button>
-
-          <button
-            type="button"
-            className="flex items-center justify-center rounded-full p-1 transition-colors hover:bg-[var(--color-gray-20)]"
-          >
-            <img src={smileIcon} alt="이모티콘" className="h-6 w-6" />
-          </button>
+          {hasText ? (
+            <button
+              type="button"
+              onClick={onSend}
+              className="flex shrink-0 items-center justify-center rounded-full p-1 bg-[var(--color-main)] hover:bg-[var(--color-pressed)]"
+            >
+              <img src={sendIcon} alt="전송" className="h-6 w-6" />
+            </button>
+          ) : (
+            <>
+              <button
+                type="button"
+                className="flex items-center justify-center rounded-full p-1 transition-colors hover:bg-[var(--color-gray-20)]"
+              >
+                <img src={microPhoneIcon} alt="음성메세지" className="h-6 w-6" />
+              </button>
+              <button
+                type="button"
+                className="flex items-center justify-center rounded-full p-1 transition-colors hover:bg-[var(--color-gray-20)]"
+              >
+                <img src={smileIcon} alt="이모티콘" className="h-6 w-6" />
+              </button>
+            </>
+          )}
         </div>
       </div>
     </div>
