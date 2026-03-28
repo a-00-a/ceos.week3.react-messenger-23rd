@@ -75,7 +75,7 @@ const ChatRoomPage = () => {
   };
 
   return (
-    <main className="flex h-screen flex-col bg-[var(--color-gray-20)]">
+    <main className="flex h-full flex-col bg-[var(--color-gray-20)]">
       <StatusBar />
       <ChatRoomHeader onFlip={() => setIsFlipped((prev) => !prev)} isFlipped={isFlipped} />
       <MessageList messages={messages} bottomRef={bottomRef} isFlipped={isFlipped} />
