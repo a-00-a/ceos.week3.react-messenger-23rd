@@ -8,7 +8,7 @@ const StatusBar = () => {
   const minutes = String(now.getMinutes()).padStart(2, '0');
 
   return (
-    <div className="flex h-12  w-full items-center justify-between bg-[var(--color-bg)] px-[31.5px]">
+    <div className="flex h-12  w-full items-center justify-between bg-bg px-[31.5px]">
       <span className="text-base font-semibold leading-4 text-black">{`${hours}:${minutes}`}</span>
       <div className="flex items-center gap-1.5">
         <img src={signalIcon} alt="시그널" />

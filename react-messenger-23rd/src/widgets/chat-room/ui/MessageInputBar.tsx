@@ -47,12 +47,12 @@ const MessageInputBar = ({ value, onChange, onSend }: MessageInputBarProps) => {
       <div className="flex items-center gap-2">
         <button
           type="button"
-          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[var(--color-gray-30)] transition-colors hover:bg-[var(--color-gray-50)]"
+          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gray-30 transition-colors hover:bg-gray-50"
         >
           <img src={plusIcon} alt="추가" className="h-6 w-6" />
         </button>
 
-        <div className="flex flex-1 items-center gap-2 pr-2 rounded-xl border border-[var(--color-gray-30)]">
+        <div className="flex flex-1 items-center gap-2 pr-2 rounded-xl border border-gray-30">
           <textarea
             ref={textareaRef}
             rows={1}
@@ -69,7 +69,7 @@ const MessageInputBar = ({ value, onChange, onSend }: MessageInputBarProps) => {
             <button
               type="button"
               onClick={onSend}
-              className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full p-1 bg-[var(--color-main)] hover:bg-[var(--color-pressed)]"
+              className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full p-1 bg-main hover:bg-pressed"
             >
               <img src={sendIcon} alt="전송" />
             </button>
@@ -77,13 +77,13 @@ const MessageInputBar = ({ value, onChange, onSend }: MessageInputBarProps) => {
             <>
               <button
                 type="button"
-                className="flex items-center justify-center rounded-full p-1 transition-colors hover:bg-[var(--color-gray-20)]"
+                className="flex items-center justify-center rounded-full p-1 transition-colors hover:bg-gray-20"
               >
                 <img src={microPhoneIcon} alt="음성메세지" className="h-6 w-6" />
               </button>
               <button
                 type="button"
-                className="flex items-center justify-center rounded-full p-1 transition-colors hover:bg-[var(--color-gray-20)]"
+                className="flex items-center justify-center rounded-full p-1 transition-colors hover:bg-gray-20"
               >
                 <img src={smileIcon} alt="이모티콘" className="h-6 w-6" />
               </button>

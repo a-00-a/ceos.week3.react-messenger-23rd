@@ -11,35 +11,33 @@ interface ChatRoomHeaderProps {
 
 const ChatRoomHeader = ({ onFlip, isFlipped }: ChatRoomHeaderProps) => {
   return (
-    <header className="flex items-center border-b border-[var(--color-gray-20)] bg-[var(--color-bg)] px-4 py-3">
+    <header className="flex items-center border-b border-gray-20 bg-bg px-4 py-3">
       <div className="flex items-center justify-center">
         <button
           type="button"
-          className="flex h-8 w-8 items-center justify-center rounded-full transition-colors hover:bg-[var(--color-gray-30)]"
+          className="flex h-8 w-8 items-center justify-center rounded-full transition-colors hover:bg-gray-30"
         >
           <img src={backIcon} alt="뒤로가기" className="h-8 w-8" />
         </button>
-        <span className="-ml-2 text-[17px] font-normal leading-6 text-[var(--color-gray-80)]">999+</span>
+        <span className="Heading02R text-gray-80">999+</span>
       </div>
 
       <div className="flex flex-1 items-center justify-center">
         <button type="button" onClick={onFlip}>
-          <h1 className="text-[17px] font-semibold leading-6 text-[var(--color-gray-90)]">
-            {isFlipped ? '고다현' : '백하린'}
-          </h1>
+          <h1 className="Heading02SB text-gray-90">{isFlipped ? '고다현' : '백하린'}</h1>
         </button>
       </div>
 
       <div className="flex w-16 justify-end gap-3">
         <button
           type="button"
-          className="flex h-8 w-8 items-center justify-center rounded-full transition-colors hover:bg-[var(--color-gray-30)]"
+          className="flex h-8 w-8 items-center justify-center rounded-full transition-colors hover:bg-gray-30"
         >
           <img src={searchIcon} alt="검색" className="h-6 w-6" />
         </button>
         <button
           type="button"
-          className="flex h-8 w-8 items-center justify-center rounded-full transition-colors hover:bg-[var(--color-gray-30)]"
+          className="flex h-8 w-8 items-center justify-center rounded-full transition-colors hover:bg-gray-30"
         >
           <img src={hamburgerIcon} alt="햄버거" className="h-6 w-6" />
         </button>
