@@ -90,10 +90,6 @@
   --leading-base: 22.5px;
 }
 
-* {
-  box-sizing: border-box;
-}
-
 body {
   margin: 0;
   font-family: 'SUIT', sans-serif;
