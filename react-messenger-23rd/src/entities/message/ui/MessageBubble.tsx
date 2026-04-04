@@ -1,25 +1,19 @@
 // 메시지 한 개.
 import type { User } from '@/entities/user/model/types';
-import rawUsers from '@/entities/user/model/users.json';
 
 import type { Message } from '../model/types';
 
 interface MessageBubbleProps {
   message: Message;
+  user: User;
   showTime: boolean;
   showProfile: boolean;
   isFlipped: boolean;
   marginClass: string;
 }
 
-const users = rawUsers as User[];
-
-const MessageBubble = ({ message, showTime, showProfile, isFlipped, marginClass }: MessageBubbleProps) => {
+const MessageBubble = ({ message, user, showTime, showProfile, isFlipped, marginClass }: MessageBubbleProps) => {
   const isMe = isFlipped ? message.userId !== 'me' : message.userId === 'me';
-
-  const user = users.find((item) => item.id === message.userId);
-
-  if (!user) return null;
 
   return (
     <div className={`flex ${isMe ? 'justify-end' : 'justify-start'} ${marginClass}`}>
