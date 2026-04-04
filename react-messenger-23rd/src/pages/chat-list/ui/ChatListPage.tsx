@@ -1,14 +1,11 @@
-import { Link } from 'react-router-dom';
+import ChatRoomList from '@/widgets/chat-list/ui/ChatRoomList';
 
 const ChatListPage = () => {
   return (
-    <div>
-      <h1>채팅 목록</h1>
-
-      <Link to="/chat/1">채팅방 1로 이동</Link>
-      <br />
-      <Link to="/friends">친구목록으로 이동</Link>
-    </div>
+    <main className="flex h-full flex-col bg-white">
+      <h1 className="px-4 py-4 text-xl font-semibold">채팅</h1>
+      <ChatRoomList />
+    </main>
   );
 };
 

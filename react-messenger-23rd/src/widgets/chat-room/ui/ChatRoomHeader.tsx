@@ -5,11 +5,12 @@ import backIcon from '@/shared/assets/icons/chat-room/My_Text Box/Back (32_32).s
 import searchIcon from '@/shared/assets/icons/chat-room/search(24_24).svg';
 
 interface ChatRoomHeaderProps {
+  title: string;
   onFlip: () => void;
   isFlipped: boolean;
 }
 
-const ChatRoomHeader = ({ onFlip, isFlipped }: ChatRoomHeaderProps) => {
+const ChatRoomHeader = ({ title, onFlip, isFlipped }: ChatRoomHeaderProps) => {
   return (
     <header className="flex items-center border-b border-gray-20 bg-bg px-4 py-3">
       <div className="flex items-center justify-center">
@@ -24,7 +25,7 @@ const ChatRoomHeader = ({ onFlip, isFlipped }: ChatRoomHeaderProps) => {
 
       <div className="flex flex-1 items-center justify-center">
         <button type="button" onClick={onFlip}>
-          <h1 className="Heading02SB text-gray-90">{isFlipped ? '고다현' : '백하린'}</h1>
+          <h1 className="Heading02SB text-gray-90">{isFlipped ? '고다현' : title}</h1>
         </button>
       </div>
 

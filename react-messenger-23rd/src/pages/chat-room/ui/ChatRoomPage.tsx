@@ -3,6 +3,8 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
+import rawChatRooms from '@/entities/chat-room/model/chatRooms.json';
+import type { ChatRoom } from '@/entities/chat-room/model/types';
 import rawMessages from '@/entities/message/model/messages.json';
 import type { Message } from '@/entities/message/model/types';
 import ChatRoomHeader from '@/widgets/chat-room/ui/ChatRoomHeader';
@@ -12,6 +14,7 @@ import MessageList from '@/widgets/chat-room/ui/MessageList';
 const STORAGE_KEY = 'chat-messages';
 
 const initialMessages = rawMessages as Message[];
+const chatRooms = rawChatRooms as ChatRoom[];
 
 const getCurrentTime = () => {
   const now = new Date();
@@ -48,8 +51,10 @@ const ChatRoomPage = () => {
 
   const [allMessages, setAllMessages] = useState<Message[]>(getInitialMessages);
   const [inputValue, setInputValue] = useState('');
-  const bottomRef = useRef<HTMLDivElement | null>(null);
   const [isFlipped, setIsFlipped] = useState(false);
+  const bottomRef = useRef<HTMLDivElement | null>(null);
+
+  const currentRoom = chatRooms.find((room) => room.id === currentRoomId);
 
   const roomMessages = useMemo(
     () => allMessages.filter((message) => message.chatRoomId === currentRoomId),
@@ -85,7 +90,11 @@ const ChatRoomPage = () => {
 
   return (
     <main className="flex h-full flex-col bg-black">
-      <ChatRoomHeader onFlip={() => setIsFlipped((prev) => !prev)} isFlipped={isFlipped} />
+      <ChatRoomHeader
+        onFlip={() => setIsFlipped((prev) => !prev)}
+        isFlipped={isFlipped}
+        title={currentRoom?.name ?? '채팅방'}
+      />
       <MessageList messages={roomMessages} bottomRef={bottomRef} isFlipped={isFlipped} />
       <MessageInputBar value={inputValue} onChange={setInputValue} onSend={handleSendMessage} />
     </main>
