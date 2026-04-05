@@ -28,7 +28,7 @@ const ChatRoomItem = ({ room, lastMessage }: ChatRoomItemProps) => {
         {/*아래쪽 (메시지 + unread)*/}
         <div className="flex items-end justify-between gap-2">
           {/*마지막 메시지*/}
-          <p className="max-w-[198px] truncate Caption01R text-gray-60">{lastMessage?.messages ?? ''}</p>
+          <p className="max-w-[198px] truncate Caption01R text-gray-60">{lastMessage?.messages ?? room.lastMessage}</p>
           {/*unread badge(지금은 고정값)*/}
           {room.unreadCount > 0 ? (
             <div className="rounded-3xl bg-main px-1.5">
