@@ -3,6 +3,8 @@ import type { RefObject } from 'react';
 
 import type { Message } from '@/entities/message/model/types';
 import MessageBubble from '@/entities/message/ui/MessageBubble';
+import type { User } from '@/entities/user/model/types';
+import rawUsers from '@/entities/user/model/users.json';
 
 import DateDivider from './DateDivider';
 
@@ -11,6 +13,8 @@ interface MessageListProps {
   bottomRef: RefObject<HTMLDivElement | null>;
   isFlipped: boolean;
 }
+
+const users = rawUsers as User[];
 
 const getMarginClass = (currentUserId: string, nextUserId: string | undefined, isFlipped: boolean) => {
   const toIsMe = (id: string) => (isFlipped ? id !== 'me' : id === 'me');
@@ -27,7 +31,7 @@ const getMarginClass = (currentUserId: string, nextUserId: string | undefined, i
 
 const MessageList = ({ messages, bottomRef, isFlipped }: MessageListProps) => {
   return (
-    <section className="flex-1 overflow-y-auto bg-[var(--color-section-bg)] px-4 py-3">
+    <section className="flex-1 scrollbar-hide overflow-y-auto bg-section-bg px-4 py-3">
       {messages.map((message, index) => {
         const prevMessage = messages[index - 1];
         const nextMessage = messages[index + 1];
@@ -44,11 +48,15 @@ const MessageList = ({ messages, bottomRef, isFlipped }: MessageListProps) => {
 
         const marginClass = getMarginClass(message.userId, nextMessage?.userId, isFlipped);
 
+        const user = users.find((item) => item.id === message.userId);
+        if (!user) return null;
+
         return (
           <div key={message.id}>
             {showDate && <DateDivider date={message.date} />}
             <MessageBubble
               message={message}
+              user={user}
               showTime={showTime}
               showProfile={showProfile}
               isFlipped={isFlipped}

@@ -1,10 +1,12 @@
 // 전체 페이지
 // 헤더, 메지지 영역, 입력창을 조립하는 파일.
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
+import rawChatRooms from '@/entities/chat-room/model/chatRooms.json';
+import type { ChatRoom } from '@/entities/chat-room/model/types';
 import rawMessages from '@/entities/message/model/messages.json';
 import type { Message } from '@/entities/message/model/types';
-import StatusBar from '@/shared/ui/StatusBar';
 import ChatRoomHeader from '@/widgets/chat-room/ui/ChatRoomHeader';
 import MessageInputBar from '@/widgets/chat-room/ui/MessageInputBar';
 import MessageList from '@/widgets/chat-room/ui/MessageList';
@@ -12,6 +14,7 @@ import MessageList from '@/widgets/chat-room/ui/MessageList';
 const STORAGE_KEY = 'chat-messages';
 
 const initialMessages = rawMessages as Message[];
+const chatRooms = rawChatRooms as ChatRoom[];
 
 const getCurrentTime = () => {
   const now = new Date();
@@ -43,20 +46,30 @@ const getInitialMessages = (): Message[] => {
 };
 
 const ChatRoomPage = () => {
-  const [messages, setMessages] = useState<Message[]>(getInitialMessages);
+  const { id } = useParams();
+  const currentRoomId = id ?? '';
+
+  const [allMessages, setAllMessages] = useState<Message[]>(getInitialMessages);
   const [inputValue, setInputValue] = useState('');
-  const bottomRef = useRef<HTMLDivElement | null>(null);
   const [isFlipped, setIsFlipped] = useState(false);
+  const bottomRef = useRef<HTMLDivElement | null>(null);
+
+  const currentRoom = chatRooms.find((room) => room.id === currentRoomId);
+
+  const roomMessages = useMemo(
+    () => allMessages.filter((message) => message.chatRoomId === currentRoomId),
+    [allMessages, currentRoomId],
+  );
 
   // messsages가 바뀔 때 LocalStorage에 저장
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
-  }, [messages]);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(allMessages));
+  }, [allMessages]);
 
   // messages가 바뀔 때 맨 아래로 스크롤
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages]);
+  }, [roomMessages]);
 
   const handleSendMessage = () => {
     const trimmedValue = inputValue.trim();
@@ -64,21 +77,25 @@ const ChatRoomPage = () => {
 
     const newMessage: Message = {
       id: String(Date.now()),
+      chatRoomId: currentRoomId,
       userId: isFlipped ? 'other' : 'me',
       messages: trimmedValue,
       time: getCurrentTime(),
       date: getCurrentDate(),
     };
 
-    setMessages((prev) => [...prev, newMessage]);
+    setAllMessages((prev) => [...prev, newMessage]);
     setInputValue('');
   };
 
   return (
-    <main className="flex h-full flex-col bg-[var(--color-gray-20)]">
-      <StatusBar />
-      <ChatRoomHeader onFlip={() => setIsFlipped((prev) => !prev)} isFlipped={isFlipped} />
-      <MessageList messages={messages} bottomRef={bottomRef} isFlipped={isFlipped} />
+    <main className="flex h-full flex-col bg-black">
+      <ChatRoomHeader
+        onFlip={() => setIsFlipped((prev) => !prev)}
+        isFlipped={isFlipped}
+        title={currentRoom?.name ?? '채팅방'}
+      />
+      <MessageList messages={roomMessages} bottomRef={bottomRef} isFlipped={isFlipped} />
       <MessageInputBar value={inputValue} onChange={setInputValue} onSend={handleSendMessage} />
     </main>
   );
