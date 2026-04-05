@@ -85,6 +85,16 @@
 ceos.week3.react-messenger-23rd
 ├─ react-messenger-23rd
 │  ├─ .prettierrc
+│  ├─ dist
+│  │  ├─ assets
+│  │  │  ├─ index-BZvjYWlK.css
+│  │  │  └─ index-DuB9fP3j.js
+│  │  ├─ favicon.svg
+│  │  ├─ icons.svg
+│  │  ├─ images
+│  │  │  ├─ Frame 73.svg
+│  │  │  └─ user-02.svg
+│  │  └─ index.html
 │  ├─ eslint.config.js
 │  ├─ index.html
 │  ├─ package-lock.json
@@ -93,57 +103,141 @@ ceos.week3.react-messenger-23rd
 │  │  ├─ favicon.svg
 │  │  ├─ icons.svg
 │  │  └─ images
-│  │     └─ Frame 73.svg
+│  │     ├─ Frame 73.svg
+│  │     └─ user-02.svg
 │  ├─ README.md
 │  ├─ src
 │  │  ├─ app
-│  │  │  ├─ App.tsx
-│  │  │  ├─ main.tsx
 │  │  │  └─ styles
 │  │  │     └─ index.css
+│  │  ├─ App.tsx
 │  │  ├─ entities
+│  │  │  ├─ chat-room
+│  │  │  │  └─ model
+│  │  │  │     ├─ chatRooms.json
+│  │  │  │     └─ types.ts
 │  │  │  ├─ message
 │  │  │  │  ├─ model
-│  │  │  │  │  └─ messages.json
+│  │  │  │  │  ├─ messages.json
+│  │  │  │  │  └─ types.ts
 │  │  │  │  └─ ui
+│  │  │  │     └─ MessageBubble.tsx
 │  │  │  └─ user
-│  │  │     ├─ model
-│  │  │     │  └─ users.json
-│  │  │     └─ ui
+│  │  │     └─ model
+│  │  │        ├─ types.ts
+│  │  │        └─ users.json
 │  │  ├─ features
-│  │  │  ├─ createChat
-│  │  │  ├─ readMessage
-│  │  │  ├─ sendMessage
+│  │  │  ├─ create-chat-room
 │  │  │  │  ├─ model
 │  │  │  │  └─ ui
-│  │  │  └─ uploadImage
-│  │  ├─ pages
-│  │  │  └─ chattingRoom
+│  │  │  ├─ send-message
+│  │  │  │  ├─ model
+│  │  │  │  └─ ui
+│  │  │  └─ upload-image
 │  │  │     ├─ model
 │  │  │     └─ ui
+│  │  ├─ main.tsx
+│  │  ├─ pages
+│  │  │  ├─ chat-list
+│  │  │  │  ├─ model
+│  │  │  │  └─ ui
+│  │  │  │     └─ ChatListPage.tsx
+│  │  │  ├─ chat-room
+│  │  │  │  ├─ model
+│  │  │  │  └─ ui
+│  │  │  │     └─ ChatRoomPage.tsx
+│  │  │  ├─ friends
+│  │  │  │  ├─ model
+│  │  │  │  └─ ui
+│  │  │  │     └─ FriendsPage.tsx
+│  │  │  └─ my-profile
+│  │  │     ├─ model
+│  │  │     └─ ui
+│  │  │        └─ MyProfilePage.tsx
 │  │  ├─ shared
 │  │  │  ├─ assets
 │  │  │  │  └─ icons
-│  │  │  │     └─ chattingRoom
-│  │  │  │        ├─ face-smile.svg
-│  │  │  │        ├─ Frame 73.svg
-│  │  │  │        ├─ hamburger(24_24).svg
-│  │  │  │        ├─ microphone-01.svg
-│  │  │  │        ├─ My_Text Box
-│  │  │  │        │  └─ Back (32_32).svg
+│  │  │  │     ├─ chat-list
+│  │  │  │     │  ├─ compass-03.svg
+│  │  │  │     │  ├─ Icon.svg
+│  │  │  │     │  ├─ new chatting(24_24).svg
+│  │  │  │     │  ├─ search(20_20).svg
+│  │  │  │     │  ├─ settings-02.svg
+│  │  │  │     │  ├─ Toggle.svg
+│  │  │  │     │  ├─ user-02.svg
+│  │  │  │     │  ├─ user-circle.svg
+│  │  │  │     │  └─ users-01.svg
+│  │  │  │     ├─ chat-room
+│  │  │  │     │  ├─ face-smile.svg
+│  │  │  │     │  ├─ Frame 73.svg
+│  │  │  │     │  ├─ hamburger(24_24).svg
+│  │  │  │     │  ├─ microphone-01.svg
+│  │  │  │     │  ├─ My_Text Box
+│  │  │  │     │  │  └─ Back (32_32).svg
+│  │  │  │     │  ├─ plus.svg
+│  │  │  │     │  ├─ search(24_24).svg
+│  │  │  │     │  └─ Status Bar
+│  │  │  │     │     ├─ Elements
+│  │  │  │     │     │  ├─ Battery.svg
+│  │  │  │     │     │  ├─ Connection.svg
+│  │  │  │     │     │  └─ Signal.svg
+│  │  │  │     │     └─ Mic & Cam.svg
+│  │  │  │     ├─ chattingRoom
+│  │  │  │     │  ├─ arrow-narrow-up.svg
+│  │  │  │     │  ├─ face-smile.svg
+│  │  │  │     │  ├─ Frame 73.svg
+│  │  │  │     │  ├─ hamburger(24_24).svg
+│  │  │  │     │  ├─ microphone-01.svg
+│  │  │  │     │  ├─ My_Text Box
+│  │  │  │     │  │  └─ Back (32_32).svg
+│  │  │  │     │  ├─ plus.svg
+│  │  │  │     │  ├─ search(24_24).svg
+│  │  │  │     │  └─ Status Bar
+│  │  │  │     │     ├─ Elements
+│  │  │  │     │     │  ├─ Battery.svg
+│  │  │  │     │     │  ├─ Connection.svg
+│  │  │  │     │     │  └─ Signal.svg
+│  │  │  │     │     └─ Mic & Cam.svg
+│  │  │  │     └─ friends
+│  │  │  │        ├─ folder-download.svg
+│  │  │  │        ├─ message-question-circle(24_24).svg
+│  │  │  │        ├─ notification-message (1).svg
+│  │  │  │        ├─ notification-message.svg
 │  │  │  │        ├─ plus.svg
+│  │  │  │        ├─ rightside(24_24).svg
 │  │  │  │        ├─ search(24_24).svg
-│  │  │  │        └─ Status Bar
-│  │  │  │           ├─ Elements
-│  │  │  │           │  ├─ Battery.svg
-│  │  │  │           │  ├─ Connection.svg
-│  │  │  │           │  └─ Signal.svg
-│  │  │  │           └─ Mic & Cam.svg
+│  │  │  │        ├─ upside(24_24).svg
+│  │  │  │        ├─ user-02.svg
+│  │  │  │        └─ user-plus(24_24).svg
+│  │  │  ├─ constants
 │  │  │  ├─ lib
-│  │  │  ├─ Test.tsx
 │  │  │  └─ ui
+│  │  │     ├─ MobileLayout.tsx
+│  │  │     └─ StatusBar.tsx
 │  │  └─ widgets
-│  │     └─ chattingRoom
+│  │     ├─ chat-list
+│  │     │  ├─ model
+│  │     │  └─ ui
+│  │     │     ├─ BottomTabBar.tsx
+│  │     │     ├─ ChatListHeader.tsx
+│  │     │     ├─ ChatListSearch.tsx
+│  │     │     ├─ ChatRoomItem.tsx
+│  │     │     └─ ChatRoomList.tsx
+│  │     ├─ chat-room
+│  │     │  ├─ model
+│  │     │  └─ ui
+│  │     │     ├─ ChatRoomHeader.tsx
+│  │     │     ├─ DateDivider.tsx
+│  │     │     ├─ MessageInputBar.tsx
+│  │     │     └─ MessageList.tsx
+│  │     └─ friends
+│  │        ├─ model
+│  │        └─ ui
+│  │           ├─ FriendItem.tsx
+│  │           ├─ FriendsHeader.tsx
+│  │           ├─ FriendsList.tsx
+│  │           ├─ MyProfileSection.tsx
+│  │           └─ TagSection.tsx
 │  ├─ tsconfig.app.json
 │  ├─ tsconfig.json
 │  ├─ tsconfig.node.json
