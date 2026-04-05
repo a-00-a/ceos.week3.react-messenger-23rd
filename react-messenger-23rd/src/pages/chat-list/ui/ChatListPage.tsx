@@ -1,10 +1,15 @@
+import BottomTabBar from '@/widgets/chat-list/ui/BottomTabBar';
+import ChatListHeader from '@/widgets/chat-list/ui/ChatListHeader';
+import ChatListSearch from '@/widgets/chat-list/ui/ChatListSearch';
 import ChatRoomList from '@/widgets/chat-list/ui/ChatRoomList';
 
 const ChatListPage = () => {
   return (
     <main className="flex h-full flex-col bg-white">
-      <h1 className="px-4 py-4 text-xl font-semibold">채팅</h1>
+      <ChatListHeader />
+      <ChatListSearch />
       <ChatRoomList />
+      <BottomTabBar />
     </main>
   );
 };
