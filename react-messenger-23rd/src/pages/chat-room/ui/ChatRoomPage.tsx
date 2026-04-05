@@ -89,7 +89,7 @@ const ChatRoomPage = () => {
   };
 
   return (
-    <main className="flex h-full flex-col bg-black">
+    <main className="flex h-full flex-col bg-bg">
       <ChatRoomHeader
         onFlip={() => setIsFlipped((prev) => !prev)}
         isFlipped={isFlipped}
