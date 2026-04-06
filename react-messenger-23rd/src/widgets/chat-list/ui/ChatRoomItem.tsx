@@ -34,7 +34,7 @@ const ChatRoomItem = ({ room, lastMessage }: ChatRoomItemProps) => {
           <p className="max-w-[198px] truncate Caption01R text-gray-60">{lastMessage?.messages ?? room.lastMessage}</p>
           {/*unread badge(지금은 고정값)*/}
           {room.unreadCount > 0 ? (
-            <div className="rounded-3xl bg-main px-1.5">
+            <div className="rounded-[24px] bg-main px-1.5">
               <span className="text-center Caption01M text-white">{room.unreadCount}</span>
             </div>
           ) : (
