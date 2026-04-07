@@ -6,9 +6,12 @@ import ChatRoomList from '@/widgets/chat-list/ui/ChatRoomList';
 const ChatListPage = () => {
   return (
     <main className="flex h-full flex-col bg-white">
-      <ChatListHeader />
-      <ChatListSearch />
-      <ChatRoomList />
+      <div className="flex-1 scrollbar-hide overflow-y-auto">
+        <ChatListHeader />
+        <ChatListSearch />
+        <ChatRoomList />
+      </div>
+
       <BottomTabBar />
     </main>
   );
