@@ -21,9 +21,9 @@ const ChatRoomItem = ({ room, lastMessage }: ChatRoomItemProps) => {
         {/*위쪽 (이름 + 시간)*/}
         <div className="flex items-start justify-between gap-2">
           <div className="flex min-w-0 items-center gap-1">
-            <p className="truncate Body01SB">{room.name}</p>
+            <p className="truncate Body01SB text-gray-80">{room.name}</p>
 
-            {room.memberCount && <span className="Body03M">{room.memberCount}</span>}
+            {room.memberCount && <span className="Body03M text-gray-50">{room.memberCount}</span>}
           </div>
           {/*시간*/}
           <span className="shrink-0 py-0.5 Caption02R text-gray-60">{lastMessage?.time ?? ''}</span>
