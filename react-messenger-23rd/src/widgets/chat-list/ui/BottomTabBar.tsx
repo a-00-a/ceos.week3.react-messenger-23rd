@@ -23,7 +23,7 @@ const BottomTabBar = () => {
       <div className="flex items-end justify-between">
         <Link to="/" className="flex w-12 flex-col items-center gap-1 p-1">
           <div className="relative">
-            <img src={isChatPage ? activeChattingIcon : chattingIcon} alt="채팅" className="h-6 w-6" />
+            <img src={isChatPage ? activeChattingIcon : chattingIcon} alt="채팅" className="h-7 w-6" />
 
             {unreadCount > 0 && (
               <div className="absolute -top-1 left-3 px-1 min-w-[22px] h-5 rounded-[24px] bg-main flex items-center justify-center">
