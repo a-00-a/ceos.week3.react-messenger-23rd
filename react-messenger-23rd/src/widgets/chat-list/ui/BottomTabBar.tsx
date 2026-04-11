@@ -15,7 +15,7 @@ const BottomTabBar = () => {
   const isFriendsPage = location.pathname.startsWith('/friends');
   const isMyProfilePage = location.pathname.startsWith('/my-profile');
 
-  const unreadCount = 1000;
+  const unreadCount = 44;
   const badgeText = unreadCount > 999 ? '999+' : unreadCount;
 
   return (
