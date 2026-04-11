@@ -11,10 +11,11 @@ import ChatRoomHeader from '@/widgets/chat-room/ui/ChatRoomHeader';
 import MessageInputBar from '@/widgets/chat-room/ui/MessageInputBar';
 import MessageList from '@/widgets/chat-room/ui/MessageList';
 
-const STORAGE_KEY = 'chat-messages';
+const MESSAGE_STORAGE_KEY = 'chat-messages';
+const CHAT_ROOMS_STORAGE_KEY = 'chat-rooms';
 
 const initialMessages = rawMessages as Message[];
-const chatRooms = rawChatRooms as ChatRoom[];
+const initialChatRooms = rawChatRooms as ChatRoom[];
 
 const getCurrentTime = () => {
   const now = new Date();
@@ -36,13 +37,23 @@ const getCurrentDate = () => {
 };
 
 const getInitialMessages = (): Message[] => {
-  const storedMessages = localStorage.getItem(STORAGE_KEY);
+  const storedMessages = localStorage.getItem(MESSAGE_STORAGE_KEY);
 
   if (storedMessages) {
     return JSON.parse(storedMessages) as Message[];
   }
 
   return initialMessages;
+};
+
+const getStoredChatRooms = (): ChatRoom[] => {
+  const storedRooms = localStorage.getItem(CHAT_ROOMS_STORAGE_KEY);
+
+  if (storedRooms) {
+    return JSON.parse(storedRooms) as ChatRoom[];
+  }
+
+  return initialChatRooms;
 };
 
 const ChatRoomPage = () => {
@@ -54,7 +65,7 @@ const ChatRoomPage = () => {
   const [isFlipped, setIsFlipped] = useState(false);
   const bottomRef = useRef<HTMLDivElement | null>(null);
 
-  const currentRoom = chatRooms.find((room) => room.id === currentRoomId);
+  const currentRoom = getStoredChatRooms().find((room) => room.id === currentRoomId);
 
   const roomMessages = useMemo(
     () => allMessages.filter((message) => message.chatRoomId === currentRoomId),
@@ -63,8 +74,17 @@ const ChatRoomPage = () => {
 
   // messsages가 바뀔 때 LocalStorage에 저장
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(allMessages));
+    localStorage.setItem(MESSAGE_STORAGE_KEY, JSON.stringify(allMessages));
   }, [allMessages]);
+
+  // 채팅방에 들어가면 해당 방의 unreadCount를 0으로 저장
+  useEffect(() => {
+    const storedRooms = getStoredChatRooms();
+
+    const updatedRooms = storedRooms.map((room) => (room.id === currentRoomId ? { ...room, unreadCount: 0 } : room));
+
+    localStorage.setItem(CHAT_ROOMS_STORAGE_KEY, JSON.stringify(updatedRooms));
+  }, [currentRoomId]);
 
   // messages가 바뀔 때 맨 아래로 스크롤
   useEffect(() => {
@@ -95,7 +115,12 @@ const ChatRoomPage = () => {
         isFlipped={isFlipped}
         title={currentRoom?.name ?? '채팅방'}
       />
-      <MessageList messages={roomMessages} bottomRef={bottomRef} isFlipped={isFlipped} roomName={currentRoom?.name ?? '채팅방'} />
+      <MessageList
+        messages={roomMessages}
+        bottomRef={bottomRef}
+        isFlipped={isFlipped}
+        roomName={currentRoom?.name ?? '채팅방'}
+      />
       <MessageInputBar value={inputValue} onChange={setInputValue} onSend={handleSendMessage} />
     </main>
   );

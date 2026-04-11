@@ -1,5 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 
+import rawChatRooms from '@/entities/chat-room/model/chatRooms.json';
+import type { ChatRoom } from '@/entities/chat-room/model/types';
 import navIcon from '@/shared/assets/icons/chat-list/compass-03.svg';
 import chattingIcon from '@/shared/assets/icons/chat-list/Icon.svg';
 import activeChattingIcon from '@/shared/assets/icons/chat-list/Icon-active.svg';
@@ -8,6 +10,17 @@ import activeMyProfileIcon from '@/shared/assets/icons/chat-list/user-circle-act
 import partnerIcon from '@/shared/assets/icons/chat-list/users-01.svg';
 import activePartnerIcon from '@/shared/assets/icons/chat-list/users-01-active.svg';
 
+const CHAT_ROOMS_STORAGE_KEY = 'chat-rooms';
+const initialChatRooms = rawChatRooms as ChatRoom[];
+
+const getStoredChatRooms = (): ChatRoom[] => {
+  const storedRooms = localStorage.getItem(CHAT_ROOMS_STORAGE_KEY);
+
+  if (!storedRooms) return initialChatRooms;
+
+  return JSON.parse(storedRooms) as ChatRoom[];
+};
+
 const BottomTabBar = () => {
   const location = useLocation();
 
@@ -15,7 +28,10 @@ const BottomTabBar = () => {
   const isFriendsPage = location.pathname.startsWith('/friends');
   const isMyProfilePage = location.pathname.startsWith('/my-profile');
 
-  const unreadCount = 44;
+  const unreadCount = getStoredChatRooms().reduce((sum, room) => {
+    return sum + (room.unreadCount ?? 0);
+  }, 0);
+
   const badgeText = unreadCount > 999 ? '999+' : unreadCount;
 
   return (

@@ -4,18 +4,26 @@ import type { Message } from '@/entities/message/model/types';
 
 import ChatRoomItem from './ChatRoomItem';
 
-const chatRooms = rawChatRooms as ChatRoom[];
+const initialChatRooms = rawChatRooms as ChatRoom[];
 
-const STORAGE_KEY = 'chat-messages';
+const MESSAGE_STORAGE_KEY = 'chat-messages';
+const CHAT_ROOMS_STORAGE_KEY = 'chat-rooms';
 
 const getMessages = (): Message[] => {
-  const stored = localStorage.getItem(STORAGE_KEY);
+  const stored = localStorage.getItem(MESSAGE_STORAGE_KEY);
   if (!stored) return [];
   return JSON.parse(stored) as Message[];
 };
 
+const getChatRooms = () : ChatRoom[] => {
+  const stored = localStorage.getItem(CHAT_ROOMS_STORAGE_KEY);
+  if (!stored) return initialChatRooms;
+  return JSON.parse(stored) as ChatRoom[];
+};
+
 const ChatRoomList = () => {
   const allMessages = getMessages();
+  const chatRooms = getChatRooms();
 
   const sortedRooms = [...chatRooms].sort((a, b) => {
     if (a.isPinned === b.isPinned) return 0;
