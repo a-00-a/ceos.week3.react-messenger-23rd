@@ -6,4 +6,6 @@ export interface ChatRoom {
     time: string;
     unreadCount: number;
     isPinned: boolean;
+    pinOrder?: number | null;
+    recentUnpinned?: number | null;
 }

@@ -3,14 +3,16 @@ import { Link } from 'react-router-dom';
 import { formatChatRoomListTime } from '@/entities/chat-room/lib/formatChatRoomListTime';
 import type { ChatRoom } from '@/entities/chat-room/model/types';
 import type { Message } from '@/entities/message/model/types';
+import pinIcon from '@/shared/assets/icons/chat-list/pin-01.svg';
 import profileIcon from '@/shared/assets/icons/chat-list/user-02.svg';
 
 interface ChatRoomItemProps {
   room: ChatRoom;
   lastMessage?: Message;
+  onTogglePin: (roomId: string) => void;
 }
 
-const ChatRoomItem = ({ room, lastMessage }: ChatRoomItemProps) => {
+const ChatRoomItem = ({ room, lastMessage, onTogglePin }: ChatRoomItemProps) => {
   return (
     <Link to={`/chat/${room.id}`} className="flex items-center gap-3 rounded-lg px-4 py-3">
       {/*프로필영역*/}
@@ -19,12 +21,28 @@ const ChatRoomItem = ({ room, lastMessage }: ChatRoomItemProps) => {
       </div>
       {/*텍스트영역*/}
       <div className="flex min-w-0 flex-1 flex-col gap-0.5">
-        {/*위쪽 (이름 + 시간)*/}
+        {/*위쪽 (이름 + 멤버수)*/}
         <div className="flex items-start justify-between gap-2">
           <div className="flex min-w-0 max-h-6 items-center gap-1">
             <p className="truncate Body01SB text-gray-80">{room.name}</p>
 
             {room.memberCount && <span className="Body03M text-gray-50">{room.memberCount}</span>}
+
+          {/*핀 아이콘*/}
+          <button
+            type="button"
+            onClick={(e) => {
+              e.preventDefault();
+              onTogglePin(room.id);
+            }}
+            className="-ml-1 flex items-center justify-center"
+          >
+            <img
+              src={pinIcon}
+              alt={room.isPinned ? '핀 해제' : '핀 고정'}
+              className={room.isPinned ? 'opacity-100' : 'opacity-0'}
+            />
+          </button>
           </div>
           {/*시간*/}
           <span className="shrink-0 py-0.5 Caption02R text-gray-60">{formatChatRoomListTime(lastMessage, room)}</span>
